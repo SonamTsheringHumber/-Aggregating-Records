@@ -2,7 +2,7 @@
   "source_url": "https://api.tvmaze.com/shows?page=0",
   "records_processed": 240,
   "records_skipped": 0,
-  "generated_at_utc": "2026-10-02T15:05:49+00:00",
+  "generated_at_utc": "2026-10-02T15:33:55+00:00",
   "shows_per_genre": {
     "Drama": 154,
     "Comedy": 66,
