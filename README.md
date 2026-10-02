@@ -26,17 +26,43 @@ The program writes `summary.json` in the current folder and prints a one-line co
 
 ## Example output
 
-Excerpt of `summary.json` (replace with a real excerpt from your own run):
+Excerpt of `summary.json`:
 
 ```json
 {
   "source_url": "https://api.tvmaze.com/shows?page=0",
-  "records_processed": <number>,
-  "shows_per_genre": { "Drama": <n>, "Comedy": <n>, ... },
-  "average_rating_by_language": {
-    "English": { "average_rating": <x.xx>, "rated_shows": <n> }
+  "records_processed": 240,
+  "shows_per_genre": {
+    "Drama": 154,
+    "Comedy": 66,
+    "Crime": 57
   },
-  "shows_per_decade": { "1990s": <n>, "2000s": <n>, ... }
+  "average_rating_by_language": {
+    "English": {
+      "average_rating": 7.58,
+      "rated_shows": 232
+    },
+    "Japanese": {
+      "average_rating": 7.88,
+      "rated_shows": 4
+    }
+  },
+  "shows_per_decade": {
+    "1980s": 2,
+    "1990s": 8,
+    "2000s": 51,
+    "2010s": 179
+  },
+  "top_rated_shows": [
+    {
+      "name": "Breaking Bad",
+      "rating": 9.2
+    },
+    {
+      "name": "Firefly",
+      "rating": 9.0
+    }
+  ]
 }
 ```
 
