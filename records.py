@@ -18,6 +18,7 @@ class DownloadError(Exception):
     """Raised when the records cannot be downloaded or understood."""
 
 
+
 def fetch_records(url):
     """Download the records from url and return them as a list of dicts.
 
@@ -63,6 +64,47 @@ def clean_records(raw_records):
         seen_ids.add(show_id)
         clean.append(item)
     return clean, len(raw_records) - len(clean)
+
+
+def get_rating(show):
+    """Return the show's average rating as a float, or None if unusable."""
+    rating = show.get("rating")
+    if not isinstance(rating, dict):
+        return None
+    value = rating.get("average")
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    if not 0 <= value <= 10:
+        return None
+    return float(value)
+
+
+def get_language(show):
+    """Return the show's language, or None if missing or blank."""
+    language = show.get("language")
+    if isinstance(language, str) and language.strip():
+        return language.strip()
+    return None
+
+
+def get_premiere_year(show):
+    """Return the premiere year as an int, or None if missing or malformed."""
+    premiered = show.get("premiered")
+    if not isinstance(premiered, str):
+        return None
+    try:
+        year = int(premiered[:4])
+    except ValueError:
+        return None
+    return year if 1850 <= year <= 2100 else None
+
+
+def get_genres(show):
+    """Return the set of clean genre names for a show (empty if none)."""
+    genres = show.get("genres")
+    if not isinstance(genres, list):
+        return set()
+    return {g.strip() for g in genres if isinstance(g, str) and g.strip()}
 
 
 def main():
